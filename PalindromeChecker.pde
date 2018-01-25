@@ -6,24 +6,46 @@ public void setup()
   {
     if(palindrome(lines[i])==true)
     {
-      println(lines[i] + " IS a palidrome.");
+      println(lines[i] + " IS a palindrome.");
     }
     else
     {
-      println(lines[i] + " is NOT a palidrome.");
+      println(lines[i] + " is NOT a palindrome.");
     }
   }
 }
 public boolean palindrome(String word)
 {
+  //noCapitals
+  String r = new String();
+  for(int i = 0; i < word.length(); i++)
+  {
+    if(word.equalsIgnoreCase(word))
+      r = word.toLowerCase();
+  }
+  //noSpaces
+  String u = new String();
+  for(int i = 0; i < r.length(); i++)
+  {
+    if(!r.substring(i+1).equals(" "))
+      u = u + r.substring(i, i+1);
+  }
+  //onlyLeters
+  String v = new String();
+  for(int i = 0; i < u.length(); i++)
+  {
+    if(Character.isLetter(u.charAt(i)) == true)
+      v = v + u.substring(i, i+1);
+  } 
+  //reverse
   String t = new String();
-  int nLast = word.length()-1;
+  int nLast = v.length()-1;
   while(nLast >= 0)
   {
-    t = t + word.substring(nLast, nLast+1);
+    t = t + v.substring(nLast, nLast+1);
     nLast--;
   }
-  if(t.equals(word))
+  if(t.equals(v))
     return true;
   else
     return false;
@@ -38,5 +60,6 @@ public String reverse(String str)
     }
     return sNew;
 }
+
 
 
